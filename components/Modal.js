@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Modal } from 'react-native';
 export default () => {
     return (
         <Modal
-        animationType='fade'
+        animationType='slide'
         transparent={true}
         visible={false}
       >
