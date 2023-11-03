@@ -9,6 +9,7 @@ export default function App() {
   const [nombre, setNombre] = useState("");
   const [puntoTemp, setPuntoTemp] = useState({});
   const [visibility, setVisibility] = useState(false);
+  const [pointsFilter, setPointsFilter] = useState(true);
   const [modalMode, setModalMode] = useState("new_marker") //new_marker - all_markers
 
   const handleLongPress = ({nativeEvent}) => {
@@ -40,11 +41,18 @@ export default function App() {
     setVisibility(true)
   }
 
+  const tooglePointsFilter = () => {
+    setPointsFilter(!pointsFilter)
+  }
+
   return (
     <View style={styles.container}>
-      <Map onLongPress={handleLongPress}/>
-      <Panel onPressLeft={handleList}/>
-      <Modal visibility={visibility}>
+      <Map onLongPress={handleLongPress} markers={puntos} pointsFilter={pointsFilter}/>
+      <Panel 
+        onPressLeft={handleList}
+        tooglePointsFilter={tooglePointsFilter}
+      />
+      <Modal visibility={visibility} >
         {
           modalMode === "new_marker" ?
             <View style={styles.form}>
