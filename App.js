@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from 'react-native';
-import { Modal, Map, Panel, Input }  from './components'
+import { Modal, Map, Panel, Input, List }  from './components'
 import { useState } from 'react';
 import { Button } from 'react-native';
 
@@ -47,7 +47,7 @@ export default function App() {
       <Modal visibility={visibility}>
         {
           modalMode === "new_marker" ?
-            <>
+            <View style={styles.form}>
               <Input title={"Nombre"} placeholder='Nombre del punto' onChangeText={handleChangeText}/>
               <View style={styles.modalBtn}>
                 <Button 
@@ -59,9 +59,9 @@ export default function App() {
                   onPress={closedModal}
                 />
               </View>
-            </>
+            </View>
           :
-          <Text>😎</Text>
+          <List markers={puntos} closedModal={()=>setVisibility(false)}/>
         }
       </Modal>
     </View>
@@ -78,5 +78,8 @@ const styles = StyleSheet.create({
   modalBtn: {
     flexDirection: "row",
     justifyContent: "space-between"
+  },
+  form: {
+    padding: 15
   }
 });
